@@ -35,7 +35,14 @@ Class plgContentShortcodes extends CMSPlugin {
         return $text;
     }
 
+    /**
+     * Replace slider shortcode with HTML
+     *
+     * @param $text
+     * @return array|string|string[]|null
+     */
     private function replaceSlider($text) {
+        // Find and replace {slider=Title}Content{/slider}
         $pattern = '/{slider=(.*?)}(.*?){\/slider}/s';
         preg_match_all($pattern, $text, $matches, PREG_SET_ORDER);
 
@@ -43,6 +50,7 @@ Class plgContentShortcodes extends CMSPlugin {
             return $text;
         }
 
+        // Load specific stylesheet for this shortcode
         JHtml::_('stylesheet', 'plg_shortcodes/slider.css', array('version' => 'auto', 'relative' => true));
 
         // Loop through the matches and replace them with details
@@ -59,12 +67,18 @@ Class plgContentShortcodes extends CMSPlugin {
             $text = preg_replace($pattern, $replacement, $text, 1);
         }
 
+        // Remove empty <p> tags
         $text = $this->removeEmptyParagraphs($text);
 
         return $text;
-
     }
 
+    /**
+     * Replace accordion shortcode with HTML and javascript
+     *
+     * @param $text
+     * @return array|mixed|string|string[]|null
+     */
     private function replaceAccordion($text) {
         // Get text between [accordion] and [/accordion]
         $pattern = "/\[accordion\](.*?)\[\/accordion\]/s";
@@ -74,10 +88,7 @@ Class plgContentShortcodes extends CMSPlugin {
             $text = preg_replace($pattern, $match[1], $text, 1);
         }
 
-//        print_r($text);
-
-        $matches = null;
-
+        // Find and replace [accordion_item title='Title']Content[/accordion_item]
         $pattern = "/\[accordion_item title='(.*?)'\](.*?)\[\/accordion_item\]/s";
         preg_match_all($pattern, $text, $matches, PREG_SET_ORDER);
 
@@ -85,6 +96,7 @@ Class plgContentShortcodes extends CMSPlugin {
             return $text;
         }
 
+        // Load specific stylesheet for this shortcode
         JHtml::_('stylesheet', 'plg_shortcodes/accordion.css', array('version' => 'auto', 'relative' => true));
 
         // Loop through the matches and replace them with details
@@ -101,6 +113,7 @@ Class plgContentShortcodes extends CMSPlugin {
             $text = preg_replace($pattern, $replacement, $text, 1);
         }
 
+        // Add javascript to open/close details elements
         $text .= '
             <script>
                 // Retrieve all the summary elements
@@ -195,6 +208,12 @@ Class plgContentShortcodes extends CMSPlugin {
         return $text;
     }
 
+    /**
+     * Remove empty paragraphs
+     *
+     * @param $text
+     * @return array|string|string[]|null
+     */
     private function removeEmptyParagraphs($text) {
         $pattern = '/<p>(.?)<\/p>/s';
         $replacement = '';
