@@ -1,0 +1,35 @@
+/* Styling for the summary and detailsContent */
+summary {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    color: #0072b0;
+    border: 1px solid #ccc;
+}
+
+/* Styling for the icon */
+summary::before {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.detailsContent {
+    padding: 0.5rem;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+/* Styling for the expanded detailsContent */
+details[open] .detailsContent {
+    max-height: 500px; /* Adjust the value based on your content */
+}
+
+
+
+

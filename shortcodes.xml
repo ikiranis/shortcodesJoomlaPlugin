@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.3" type="plugin" group="content">
+        <name>shortcodes</name>
+        <author>WebRiver</author>
+        <creationDate>May 2023</creationDate>
+        <copyright>WebRiver</copyright>
+        <license>GNU General Public License</license>
+        <authorEmail>support@webriver.media</authorEmail>
+        <authorUrl>https://webriver.media/</authorUrl>
+        <version>1.0</version>
+        <description>Renders shortcodes</description>
+        <files>
+                <filename plugin="shortcodes">shortcodes.php</filename>>
+        </files>
+
+        <media folder="media" destination="plg_shortcodes/css">
+                <filename>accordion.css</filename>
+                <filename>slider.css</filename>
+        </media>
+
+</extension>

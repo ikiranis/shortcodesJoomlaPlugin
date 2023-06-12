@@ -1,0 +1,43 @@
+.entry-content p {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Styling for the summary */
+summary {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+    position: relative;
+    color: #0072b0;
+    border-top: 1px solid #ccc;
+
+}
+
+/* Styling for the icon */
+summary::before {
+    content: "+";
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Styling for the open state icon */
+details[open] summary::before {
+    content: "-";
+}
+
+details[open] summary {
+    border-bottom: 1px solid #ccc;
+}
+
+/* Styling for the "click to collapse" text */
+details[open] summary::after {
+    content: "Click to collapse";
+    position: absolute;
+    right: 10px;
+    font-size: 0.7rem;
+    color: gray;
+    opacity: 0.5;
+}
